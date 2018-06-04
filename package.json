@@ -1,0 +1,12 @@
+{
+  "name": "resurectum",
+  "version": "1.0.0",
+  "description": "Resurect process for old (or new) frontend project",
+  "main": "src/index.js",
+  "author": "Antistatique",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cross-spawn": "^6.0.5",
+    "inquirer": "^6.0.0"
+  }
+}

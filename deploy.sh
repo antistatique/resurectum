@@ -19,7 +19,7 @@ mkdir $DIRECTORY
 git worktree prune
 rm -rf .git/worktrees/$DIRECTORY/
 
-echo "Checking out gh-pages branch into build"
+echo "Checking out $BRANCH branch into build"
 git worktree add -B $BRANCH $DIRECTORY
 
 echo "Removing existing files"
@@ -29,6 +29,6 @@ echo "Generating site"
 cp -r "$DIRECTORY-tmp"/* $DIRECTORY/
 rm -rf "$DIRECTORY-tmp"
 
-echo "Updating gh-pages branch"
+echo "Updating $BRANCH branch"
 cd $DIRECTORY && git add --all && git commit -m "Publishing to $BRANCH (publish.sh)"
 git push --force origin $BRANCH

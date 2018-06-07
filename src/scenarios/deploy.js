@@ -6,7 +6,7 @@ const chalk = require('chalk');
 const utils = require('../utils');
 
 const deployContent = require('../templates/deploy');
-const branch = 'build/frontend';
+const branch = 'dist/frontend';
 
 module.exports = async (context) => {
   utils.separator();  
@@ -60,6 +60,6 @@ module.exports = async (context) => {
   1. Update your project state and go to the ${chalk.green('master')} branch
   2. Re-build your assets with Toolbox or my own solution
   3. $ sh ./deploy-frontend.sh
-  4. Now you can use the ${chalk.green('build/frontend')} branch to fetch the build during your deploy process
+  4. Now you can use the ${chalk.green(branch)} branch to fetch the build during your deploy process
 `);
 };

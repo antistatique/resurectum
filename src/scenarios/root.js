@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
+const chalk = require('chalk');
 const utils = require('../utils');
 
 const local = require('./local');
 const deploy = require('./deploy');
 
+// Will dispatch the user to the right scenarion recursively until it's fine
 const rootQuestion = (message, context, resolve = null) => new Promise(async (res, rej) => {
   const situation = await inquirer.prompt([{
     type: 'list',
@@ -33,18 +35,20 @@ const rootQuestion = (message, context, resolve = null) => new Promise(async (re
   switch (situation.res) {
     case 'local':
       await local(context);
+      await utils.delay(1000);
       await utils.separator();
-      rootQuestion('Quelque chose d\'autre ?', context, resolve || res);
+      rootQuestion('Something else ?', context, resolve || res);
       break;
 
     case 'deploy':
       await deploy(context);
+      await utils.delay(2000);
       await utils.separator();
-      rootQuestion('Quelque chose d\'autre ?', context, resolve || res);
+      rootQuestion('Something else ?', context, resolve || res);
       break;
 
     case 'sucks':
-      console.log(`\n😕 Sorry, maybe it's time to call ${chalk.cyan('Yann')}`);
+      console.log(`\n😕 Sorry to hear that. Maybe it's time to call ${chalk.cyan('Yago')}`);
       await utils.delay(1000);
       if (resolve) resolve();
       res();

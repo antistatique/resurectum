@@ -22,7 +22,7 @@ module.exports = async (context) => {
     type: 'confirm',
     name: 'res',
     prefix: '🤓',
-    message: `I\'m going to create à local ${chalk.green('docker-compose.yml')} file.\nIs that ok ?`
+    message: `I\'m going to create a local ${chalk.green('docker-compose.yml')} file.\nIs that ok ?`
   }]);
 
   if (createDockerCompose.res) {
@@ -32,6 +32,24 @@ module.exports = async (context) => {
       res();
     }));
     await writeFile();
+  }
+
+  // Fix few things first
+  await utils.delay(1000);
+  utils.separator();
+  switch (context.slug) {
+    case 'fabricator':
+      console.log(`🤓 Now, in your ${chalk.white('package.js')}, you must set ${chalk.white('fabricator-assemble')} to ${chalk.white('1.2.0')}\n`);
+      await utils.confirm();
+      break;
+
+    case 'old':
+      console.log(`🤓 Now, in your ${chalk.white('package.js')}, you must set ${chalk.white('gulp-phantomcss')} to ${chalk.white('0.3.0')}\n`);
+      await utils.confirm();      
+      break;
+  
+    default:
+      break;
   }
 
   // Start Docker service

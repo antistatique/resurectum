@@ -5,7 +5,7 @@
 ## How to use it
 
 ```bash
-$ curl -L https://raw.githubusercontent.com/antistatique/resurectumum/dist/[mac OR win OR linux] > resurectum && chmod 755 ./resurectum && ./resurectum
+$ curl -L https://raw.githubusercontent.com/antistatique/resurectum/dist/[mac OR win OR linux] > resurectum && chmod 755 ./resurectum && ./resurectum
 ```
 
 ## Contribution

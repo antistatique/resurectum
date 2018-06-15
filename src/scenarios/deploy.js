@@ -41,25 +41,25 @@ module.exports = async (context) => {
     type: 'confirm',
     name: 'res',
     prefix: '🤓',
-    message: `I\'m going to create a local ${chalk.green('deploy-frontend.sh')} file.\nIs that ok ?`
+    message: `I\'m going to create a local ${chalk.green('publish.sh')} file.\nIs that ok ?`
   }]);
 
   if (createDeployBin.res) {
-    const writeFile = () => new Promise((res, rej) => fs.writeFile(`${process.cwd()}/deploy-frontend.sh`, deployContent(buildPath, branch), (err) => {
+    const writeFile = () => new Promise((res, rej) => fs.writeFile(`${process.cwd()}/publish.sh`, deployContent(buildPath, branch), (err) => {
       if (err) throw err;
-      console.log('deploy-frontend.sh is well saved!');
+      console.log('publish.sh is well saved!');
       res();
     }));
     await writeFile();
   }
   
   console.log(`
-🤓 Now you can use ${chalk.white('deploy-frontend.sh')} to re-deploy your local frontend build. Feel free to follow those steps:
+🤓 Now you can use ${chalk.white('publish.sh')} to re-deploy your local frontend build. Feel free to follow those steps:
 
-  0. Commit your local changes (+ the new deploy-frontend.sh)
+  0. Commit your local changes (+ the new publish.sh)
   1. Update your project state and go to the ${chalk.green('master')} branch
   2. Re-build your assets with Toolbox or my own solution
-  3. $ sh ./deploy-frontend.sh
+  3. $ sh publish.sh NEW_VERSION<0.0.1> BOOLEAN_FOR_DEPLOYING_ON_NPM_ALSO<true>
   4. Now you can use the ${chalk.green(branch)} branch to fetch the build during your deploy process
 `);
 };

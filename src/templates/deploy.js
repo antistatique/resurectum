@@ -1,9 +1,8 @@
-module.exports = (dir, branch) => `
-#!/bin/sh
+module.exports = (dir, branch) => `#!/bin/sh
 
 DIRECTORY="${dir}"
 BRANCH="${branch}"
-CURRENT_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\\1/p')
+CURRENT_BRANCH=$(git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p')
 
 # Check if the environment is ready for publishing ===========================
 if [ "$CURRENT_BRANCH" != "master" ]
